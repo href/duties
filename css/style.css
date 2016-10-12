@@ -1,0 +1,301 @@
+/*
+    General Styles
+*/
+html {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+
+    color: rgba(74, 74, 74, 1.00);
+
+    box-sizing: border-box;
+}
+
+a {
+    color: rgba(255, 109, 109, 1.00);
+}
+
+a:visited {
+    color: rgba(74, 74, 74, 1.00);
+}
+
+/*
+    Layout
+*/
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 1.5rem 0 1.5rem;
+}
+
+header {
+    flex: 0 1 100%;
+}
+
+#variables {
+    margin-right: 2.5rem;
+}
+
+#variables, #result {
+    flex: 0 1 calc(50% - 1.25rem);
+}
+
+#variables h2, #result h2 {
+    margin-bottom: 1.25rem;
+}
+
+footer {
+    flex: 0 1 100%;
+}
+
+/*
+    Main content wrapper
+*/
+body {
+    margin: 1rem auto;
+    padding: 0 1.5rem 0 1.5rem;
+}
+
+/*
+    Header
+*/
+header {
+    border-color: rgba(255, 109, 109, 1.00);
+    border-style: solid;
+    border-width: 0 0 1rem;
+
+    padding: 0 1.5rem 0 1.5rem;
+
+    margin: 0 0 2rem;
+}
+
+header a,
+header a:visited,
+header a:focus,
+header a:active {
+    color: rgba(74, 74, 74, 1.00);
+    text-decoration: none;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    margin: 0 0 -.75rem;
+}
+
+header .tagline {
+    margin: 0 0 0.75rem;
+}
+
+/*
+    Sections
+*/
+section {
+    margin: 0 0 2rem;
+}
+
+section h2 {
+    margin: 0 0 .75rem;
+
+    text-transform: uppercase;
+}
+
+section p {
+    max-width: 60ex;
+}
+
+/*
+    Result
+*/
+
+.positive .callout {
+    background: url(../img/smiley.svg);
+    background-position: 111.5% 144.5%;
+}
+
+.negative .callout {
+    background: url(../img/frowney.svg);
+    background-position: 112.5% 153%;
+}
+
+.positive .callout, .negative .callout {
+    background-repeat: no-repeat;
+    background-color: rgba(255, 109, 109, 1.00);
+    
+    border-radius: 2px;
+
+    font-size: 2rem;
+    color: white;
+
+    margin: 0 0 1.25rem;
+    padding: 1.5rem 5rem 1.5rem 2rem;
+}
+
+.explanation {
+    margin-bottom: 1rem;
+}
+
+/*
+    Form labels
+*/
+label {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 0 0 .5rem;
+    margin: 0 0 1rem;
+
+    border-style: solid;
+    border-width: 0 0 1px;
+    border-color: rgba(255, 109, 109, 1.00);
+}
+
+.label-text {
+    display: inline-block;
+    margin-top: .5rem;
+    line-height: 1.5rem;
+}
+
+/*
+    Input fields
+*/
+input, select, option, .checkbox-pseudo {
+    font-size: 1.5rem;
+    color: rgba(64, 64, 64, 1.00);
+    cursor: pointer;
+}
+
+input:focus, select:focus {
+    text-decoration: underline;
+    outline: none;
+}
+
+input {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+
+    height: 2rem;
+    line-height: normal;
+
+    text-align: right;
+    vertical-align: middle;
+    max-width: 45%;
+}
+
+select, option {
+    background: none;
+    border: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+        -ms-appearance: none;
+         -o-appearance: none;
+    appearance: none;
+    padding: 0;
+    margin: 0;
+}
+
+select:focus {
+    background: rgba(255, 109, 109, 0.25);
+}
+
+/*
+    Number fields
+*/
+input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*
+    Checkboxes
+*/
+input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+}
+
+input[type="checkbox"]:checked + .checkbox-pseudo:before {
+    content: "Yes";
+    cursor: pointer;
+}
+
+input[type="checkbox"] + .checkbox-pseudo:before {
+    content: "No";
+    cursor: pointer;
+}
+
+input[type="checkbox"]:focus  + .checkbox-pseudo:before {
+    text-decoration: underline;
+    background: rgba(255, 109, 109, 0.25);
+}
+
+/*
+    Text selection
+*/
+::selection {
+    background: rgba(255, 109, 109, 0.25);
+}
+::-moz-selection {
+    background: rgba(255, 109, 109, 0.25);
+}
+
+/*
+    Footer
+*/
+
+footer {
+    margin: 3rem 0 0 0;
+
+    border-color: rgba(255, 109, 109, 1.00);
+    border-style: solid;
+    border-width: 1px 0 0;
+
+    padding: .25rem 1.5rem .25rem 1.5rem;
+
+    font-size: 1rem;
+}
+
+/*
+    Responsive Overrides
+*/
+@media (min-width: 740px) {
+    body {
+        width: 740px;
+    }
+}
+
+@media (max-width: 740px) {
+    
+    html {
+        padding: 0 1.5rem;
+    }
+    
+    main {
+        padding: 0;
+    }
+    
+    body {
+        padding: 0;
+        width: 100%;
+    }
+
+    #variables, #result {
+        margin: 0 0 1.5rem;
+        flex: 0 1 100%;
+    }
+    
+    header {
+        padding: 0;
+    }
+}

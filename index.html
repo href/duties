@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <title>Duties - Swiss Customs Calculator for Online Shoppers</title>
+
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- I know icons. I have the best icons. -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+
+    <meta name="msapplication-TileColor" content="#FF6D6D">
+    <meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#FF6D6D">
+    <!-- I miss favicon.ico... -->
+
+</head>
+<body>
+
+    <header>
+        <a href="https://www.duties.ch/">
+            <h1>Duties</h1>
+            <div class="tagline">swiss online import costs</div>
+        </a>
+    </header>
+
+    <main>
+        <section id="disclaimer">
+            <h2>Disclaimer</h2>
+            <p>
+                Grown out of a personal script, this calculator tries to tell
+                you the amount of taxes you have to pay when you order
+                something online and import it to Switzerland. It is entirely
+                possible that this tool is wrong for many reasons, so there is
+                no guarantee that the shown price is actually what you'll pay.
+            </p>
+        </section>
+
+        <section id="variables">
+            <h2>Variables</h2>
+
+            <form>
+                <label>
+                    <span class="label-text">Price</span>
+                    <input type="number" step="0.05" min="0" name="price">
+                </label>
+                <label>
+                    <span class="label-text">Shipping</span>
+                    <input type="number" step="0.05" min="0" name="shipping">
+                </label>
+                <label>
+                    <span class="label-text">Courier</span>
+                    <select name="courier">
+                        <option value="dhl">DHL</option>
+                        <option value="post" selected>Post</option>
+                    </select>
+                </label>
+                <label data-show-if="courier=post">
+                    <span class="label-text">Country</span>
+                    <select name="country">
+                        <option value="any" selected>Any</option>
+                        <option value="austria">Austria</option>
+                        <option value="france">France</option>
+                        <option value="germany">Germany</option>
+                        <option value="italy">Italy</option>
+                    </select>
+                </label>
+                <label data-show-if="courier=dhl">
+                    <span class="label-text">Weight</span>
+                    <select name="weight">
+                        <option value="normal" selected>&lt; 1'000kg</option>
+                        <option value="heavy">&gt; 1'000kg</option>
+                    </select>
+                </label>
+                <label>
+                    <span class="label-text">Product</span>
+                    <select name="product">
+                        <option value="any" selected>Any</option>
+                        <option value="books">Books</option>
+                        <option value="food">Food</option>
+                        <option value="magazines">Magazines</option>
+                        <option value="pharma">Pharmaceuticals</option>
+                    </select>
+                </label>
+            </form>
+        </section>
+
+        <section id="result">
+            <h2>Result</h2>
+
+            <div class="positive">
+                <div class="callout">
+                    Yay, looks like you do <strong>not</strong> have to pay taxes!
+                </div>
+
+                <div class="explanation">
+                    Your <span class="result-taxrate">8</span>% VAT is
+                    <strong class="result-vat">0.00</strong> which is below the
+                    5.00 limit.
+                </div>
+            </div>
+
+            <div class="negative" style="display: none;">
+                <div class="callout">
+                    Oh no, looks like you’ll have to pay <strong class="result-costs">0.00</strong>
+                    in taxes!
+                </div>
+
+                <div class="explanation">
+                    Your <span class="result-taxrate">8</span>% VAT is
+                    <strong class="result-vat">0.00</strong>, which is above
+                    the 5.00 limit.
+                </div>
+
+                <div class="details">
+                    Additionally, you'll be charged a duty fee of
+                    <strong class="result-duty">0.00</strong>.
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Found an error? Then <a href="https://github.com/href/duties/issues">please let me know</a>.
+    </footer>
+
+    <!-- lazily loaded -->
+    <div data-if-fragment="tests" data-src="js/tests.js"></div>
+
+    <!-- eagerly loaded -->
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/math.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
+</body>
+</html>
