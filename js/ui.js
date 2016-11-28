@@ -96,8 +96,13 @@ ready(function() {
     eachElement('input[type="number"]', function(el) {
         el.addEventListener('click', function() {
             this.select();
-            this.selectionStart = 0;
-            this.selectionEnd = 999;
+
+            try {
+                this.selectionStart = 0;
+                this.selectionEnd = 999;
+            } catch (error) {
+                // Chrome doesn't support selections done this way
+            }
         });
     });
 });
