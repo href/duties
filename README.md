@@ -2,7 +2,7 @@
 
 Swiss Online Import Costs Calculator.
 
-**Online Version: [https://duties.ch/](https://www.duties.ch/)**
+**Online Version: [https://duties.ch/](https://duties.ch/)**
 
 ## Introduction
 
