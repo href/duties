@@ -111,27 +111,14 @@ section p {
     Result
 */
 
-.positive .callout {
-    background: url(../img/smiley.svg);
-    background-position: 111.5% 144.5%;
-}
-
-.negative .callout {
-    background: url(../img/frowney.svg);
-    background-position: 112.5% 153%;
-}
-
-.positive .callout, .negative .callout {
-    background-repeat: no-repeat;
-    background-color: rgba(255, 109, 109, 1.00);
-    
+.callout {
+    background: rgba(240, 245, 245, .25);
     border-radius: 2px;
 
     font-size: 2rem;
-    color: white;
 
     margin: 0 0 1.25rem;
-    padding: 1.5rem 5rem 1.5rem 2rem;
+    padding: 1rem 1.5rem;
 }
 
 .explanation {
@@ -276,15 +263,15 @@ footer {
 }
 
 @media (max-width: 740px) {
-    
+
     html {
         padding: 0 1.5rem;
     }
-    
+
     main {
         padding: 0;
     }
-    
+
     body {
         padding: 0;
         width: 100%;
@@ -294,7 +281,7 @@ footer {
         margin: 0 0 1.5rem;
         flex: 0 1 100%;
     }
-    
+
     header {
         padding: 0;
     }
