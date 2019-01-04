@@ -25,7 +25,7 @@ var courierFees = {
 
 // vat by product type
 var vatByProductType = {
-    any: 0.08,
+    any: 0.077,
     books: 0.025,
     food: 0.025,
     magazines: 0.025,
@@ -111,7 +111,7 @@ function parametersByForm(form) {
             taxrate: 0.08
         });
 
-    resturns:
+    returns:
 
         {
             price: 200.00,
