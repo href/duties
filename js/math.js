@@ -140,8 +140,7 @@ function calculateDuties(parameters) {
     var _ = roundToFiveCents;
 
     r.worth = _(r.price + r.shipping);
-    r.expenses = _(r.worth * 3 / 100);
-    r.duty = _(r.fee + r.expenses + r.storage);
+    r.duty = _(r.fee + r.storage);
     r.vat = _((r.worth + r.duty) * r.taxrate);
     r.costs = _(r.vat + r.duty);
     r.total = _(r.worth + r.costs);
