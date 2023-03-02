@@ -13,7 +13,7 @@ Note that the fees calculated here may differ from the actual fee. It's a
 complicated matter and I do not work in customs, so my understanding might be
 off.
 
-Umport regulation changes all the time and your supplier as well as the
+Import regulation changes all the time and your supplier as well as the
 customs office make mistakes. There are also many corner cases which this
 tool does not address. I trust that if you're importing diamonds by the
 buckets that you'll know better than to consult this online tool.
