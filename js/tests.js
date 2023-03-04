@@ -27,11 +27,11 @@ function runTests() {
             console.log("Running " + key);
 
             try {
-                window[key]();    
+                window[key]();
             } catch(e) {
                 console.log(e);
             }
-            
+
             count++;
         }
     })
@@ -117,12 +117,11 @@ function testPostfinanceFormula() {
     assert (result.storage == 13.00, "storage");
     assert (result.taxrate == 0.08, "taxrate");
     assert (result.worth == 233.50, "worth");
-    
-    assert (result.vat == 21.55, "vat");
-    assert (result.expenses == 7.00, "expenses");
-    assert (result.duty == 36.00, "duty");
-    assert (result.costs == 57.55, "total taxes");
-    assert (result.total == 291.05, "total costs");
+
+    assert (result.vat == 21.00, "vat");
+    assert (result.duty == 29.00, "duty");
+    assert (result.costs == 50.00, "total taxes");
+    assert (result.total == 283.50, "total costs");
 }
 
 

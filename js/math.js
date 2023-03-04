@@ -120,11 +120,10 @@ function parametersByForm(form) {
             fee: 16.00,
             storage: 233.50,
             taxrate: 0.08,
-            vat: 21.55,
-            expenses: 13.00,
-            duty: 36.00,
-            costs: 57.55,
-            total: 291.05,
+            vat: 21.00,
+            duty: 29.00,
+            costs: 50.00,
+            total: 283.50,
             hasToPay: true,
         }
 
