@@ -182,12 +182,20 @@ ready(function() {
             if ((result.price + result.shipping) === 0) {
                 el.innerHTML = '0.00';
             } else {
-                el.innerHTML = result.vat.toFixed(2);
+                el.innerHTML = result.vatOnWorth.toFixed(2);
             }
         });
 
+        eachElement('.result-worth', function(el) {
+            el.innerHTML = result.worth.toFixed(2);
+        });
+
+        eachElement('.result-limit', function(el) {
+            el.innerHTML = result.limit.toFixed(2);
+        });
+
         eachElement('.result-duty', function(el) {
-            el.innerHTML = result.duty.toFixed(2);
+            el.innerHTML = result.totalDuty.toFixed(2);
         });
 
         eachElement('.result-taxrate', function(el) {

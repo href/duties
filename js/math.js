@@ -120,10 +120,12 @@ function parametersByForm(form) {
             fee: 16.00,
             storage: 233.50,
             taxrate: 0.08,
-            vat: 21.00,
+            vatOnWorth: 18.70
             duty: 29.00,
+            vatOnDuty: 2.30,
             costs: 50.00,
             total: 283.50,
+            limit: 63.00,
             hasToPay: true,
         }
 
@@ -140,10 +142,19 @@ function calculateDuties(parameters) {
 
     r.worth = _(r.price + r.shipping);
     r.duty = _(r.fee + r.storage);
-    r.vat = _((r.worth + r.duty) * r.taxrate);
-    r.costs = _(r.vat + r.duty);
-    r.total = _(r.worth + r.costs);
-    r.hasToPay = r.vat >= 5.0;
+    r.vatOnWorth = _(r.worth * r.taxrate);
+    r.vatOnDuty = _(r.duty * r.taxrate);
+    r.totalDuty = r.duty + r.vatOnDuty
+    r.costs = r.vatOnWorth + r.totalDuty;
+    r.total = r.worth + r.costs;
+
+    // Per https://www.post.ch/en/business-solutions/exports-imports-and-customs-clearance/imports/faqs-about-imports-customs-and-vat,
+    // consignments are exempt from duties if the goods do not exceed 65 CHF for
+    // products with VAT 7.7% and 200 CHF for products with VAT 2.5%. These
+    // limits are basically rounded up values for the resulting VAT being below
+    // 5 CHF.
+    r.limit = Math.ceil(5.0 / r.taxrate);
+    r.hasToPay = r.worth > r.limit;
 
     return r;
 }

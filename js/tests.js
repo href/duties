@@ -118,11 +118,92 @@ function testPostfinanceFormula() {
     assert (result.taxrate == 0.08, "taxrate");
     assert (result.worth == 233.50, "worth");
 
-    assert (result.vat == 21.00, "vat");
+    assert (result.vatOnWorth == 18.70, "vat on worth");
     assert (result.duty == 29.00, "duty");
+    assert (result.vatOnDuty == 2.30, "vat on duty");
     assert (result.costs == 50.00, "total taxes");
     assert (result.total == 283.50, "total costs");
+    assert (result.limit == 63.00, "limit");
+    assert (result.hasToPay, "has to pay");
 }
 
+function testWorthBelowLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 50,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthAtLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 65,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+
+function testWorthJustAboveLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 65.06,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (result.hasToPay, "has to pay");
+}
+
+function testWorthBelowLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 150,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthAtLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 200,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthJustAboveLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 200.05,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (result.hasToPay, "has to pay");
+}
 
 runTests();
