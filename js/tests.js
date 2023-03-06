@@ -27,11 +27,11 @@ function runTests() {
             console.log("Running " + key);
 
             try {
-                window[key]();    
+                window[key]();
             } catch(e) {
                 console.log(e);
             }
-            
+
             count++;
         }
     })
@@ -117,13 +117,93 @@ function testPostfinanceFormula() {
     assert (result.storage == 13.00, "storage");
     assert (result.taxrate == 0.08, "taxrate");
     assert (result.worth == 233.50, "worth");
-    
-    assert (result.vat == 21.55, "vat");
-    assert (result.expenses == 7.00, "expenses");
-    assert (result.duty == 36.00, "duty");
-    assert (result.costs == 57.55, "total taxes");
-    assert (result.total == 291.05, "total costs");
+
+    assert (result.vatOnWorth == 18.70, "vat on worth");
+    assert (result.duty == 29.00, "duty");
+    assert (result.vatOnDuty == 2.30, "vat on duty");
+    assert (result.costs == 50.00, "total taxes");
+    assert (result.total == 283.50, "total costs");
+    assert (result.limit == 63.00, "limit");
+    assert (result.hasToPay, "has to pay");
 }
 
+function testWorthBelowLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 50,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthAtLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 65,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+
+function testWorthJustAboveLimitForVat7_7() {
+    var result = calculateDuties({
+        price: 65.06,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.077
+    });
+
+    assert (result.limit == 65.00, "limit");
+    assert (result.hasToPay, "has to pay");
+}
+
+function testWorthBelowLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 150,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthAtLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 200,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (!result.hasToPay, "has to pay");
+}
+
+function testWorthJustAboveLimitForVat2_5() {
+    var result = calculateDuties({
+        price: 200.05,
+        shipping: 0,
+        fee: 16,
+        storage: 13,
+        taxrate: 0.025
+    });
+
+    assert (result.limit == 200.00, "limit");
+    assert (result.hasToPay, "has to pay");
+}
 
 runTests();
