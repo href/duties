@@ -25,11 +25,11 @@ var courierFees = {
 
 // vat by product type
 var vatByProductType = {
-    any: 0.077,
-    books: 0.025,
-    food: 0.025,
-    magazines: 0.025,
-    pharmaceuticals: 0.025
+    any: 0.081,
+    books: 0.026,
+    food: 0.026,
+    magazines: 0.026,
+    pharmaceuticals: 0.026
 }
 
 // same as parseFloat, but with a default if parsing impossible
