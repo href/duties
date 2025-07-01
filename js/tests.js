@@ -206,4 +206,41 @@ function testWorthJustAboveLimitForVat2_5() {
     assert (result.hasToPay, "has to pay");
 }
 
+
+function testCourierFeeUpsBelowLimit() {
+    var price = 77.27;
+    var shipping = 0;
+    var expectedFees = 25.15;
+    var result = courierFees["ups"]("any", price, shipping);
+
+    assert(result == expectedFees, "ups courier fees below limit");
+}
+
+function testCourierFeeUpsJustBelowLimit() {
+    var price = 838;
+    var shipping = 0;
+    var expectedFees = 25.15;
+    var result = courierFees["ups"]("any", price, shipping);
+
+    assert(result == expectedFees, "ups courier fees just below limit");
+}
+
+function testCourierFeeUpsJustAboveLimit() {
+    var price = 840;
+    var shipping = 0;
+    var expectedFees = 25.2;
+    var result = courierFees["ups"]("any", price, shipping);
+
+    assert(result == expectedFees, "ups courier fees just above limit");
+}
+
+function testCourierFeeUpsConsiderShipping() {
+    var price = 838;
+    var shipping = 20;
+    var expectedFees = 25.74;
+    var result = courierFees["ups"]("any", price, shipping);
+
+    assert(result == expectedFees, "ups courier fees with shipping");
+}
+
 runTests();
