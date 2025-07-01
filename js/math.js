@@ -21,11 +21,10 @@ var courierFees = {
 
         return dutyfee + expenses;
     },
-    ups: function(country, price, shipping, taxrate, over1t) {
+    ups: function(country, price) {
         var dutyfee = Math.max(price * 0.03, 25.15);
-        var expenses = dutyfee * taxrate;
 
-        return dutyfee + expenses;
+        return dutyfee;
     }
 }
 
