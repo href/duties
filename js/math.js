@@ -21,7 +21,7 @@ var courierFees = {
 
         return dutyfee + expenses;
     },
-    ups: function(country, price) {
+    ups: function(country, price, shipping) {
         var dutyfee = Math.max((price + shipping) * 0.03, 25.15);
 
         return dutyfee;
